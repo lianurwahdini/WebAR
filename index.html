@@ -11,16 +11,14 @@
   <script src="opencv.js"></script>
   <script src="PluginBridge.js"></script>
 
-  <!-- Unity Loader -->
   <script>
-    // Inisialisasi OpenCV
     cv['onRuntimeInitialized'] = () => {
       console.log('OpenCV ready');
       startCameraAndTrack();
     };
   </script>
 
-  <!-- Konfigurasi Unity WebGL -->
+  <!-- Unity Build (PASTIKAN SESUAI NAMA FILE KAMU) -->
   <script>
     var buildUrl = "Build";
     var config = {
@@ -28,17 +26,17 @@
       frameworkUrl: buildUrl + "/Build.framework.js",
       codeUrl: buildUrl + "/Build.wasm",
       streamingAssetsUrl: "StreamingAssets",
-      companyName: "MyCompany",
-      productName: "MyWebARProject",
+      companyName: "YourCompany",
+      productName: "MyWebAR",
       productVersion: "1.0",
     };
 
     var container = document.querySelector("#unity-canvas");
     var script = document.createElement("script");
-    script.src = buildUrl + "/Build.loader.js";
+    script.src = buildUrl + "/Build.loader.js"; // 
     script.onload = () => {
       createUnityInstance(container, config, (progress) => {
-        console.log("Loading: " + (progress * 100).toFixed(1) + "%");
+        console.log(`Loading ${progress * 100}%`);
       }).then((unityInstance) => {
         window.unityInstance = unityInstance;
       });
