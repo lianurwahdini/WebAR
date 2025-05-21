@@ -7,7 +7,6 @@
 <body>
   <canvas id="unity-canvas"></canvas>
 
-  <!-- OpenCV & Plugin -->
   <script src="opencv.js"></script>
   <script src="PluginBridge.js"></script>
 
@@ -18,7 +17,6 @@
     };
   </script>
 
-  <!-- Unity Build (PASTIKAN SESUAI NAMA FILE KAMU) -->
   <script>
     var buildUrl = "Build";
     var config = {
@@ -26,17 +24,17 @@
       frameworkUrl: buildUrl + "/Build.framework.js",
       codeUrl: buildUrl + "/Build.wasm",
       streamingAssetsUrl: "StreamingAssets",
-      companyName: "YourCompany",
-      productName: "MyWebAR",
+      companyName: "MyCompany",
+      productName: "WebAR",
       productVersion: "1.0",
     };
 
     var container = document.querySelector("#unity-canvas");
     var script = document.createElement("script");
-    script.src = buildUrl + "/Build.loader.js"; // ✅ INI SESUAI DENGAN NAMAMU
+    script.src = buildUrl + "/Build.loader.js"; // ✅ INI YANG BENAR!
     script.onload = () => {
       createUnityInstance(container, config, (progress) => {
-        console.log(`Loading ${progress * 100}%`);
+        console.log("Loading: " + (progress * 100).toFixed(1) + "%");
       }).then((unityInstance) => {
         window.unityInstance = unityInstance;
       });
