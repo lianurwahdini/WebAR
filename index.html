@@ -6,15 +6,44 @@
 </head>
 <body>
   <canvas id="unity-canvas"></canvas>
+
+  <!-- OpenCV & Plugin -->
   <script src="opencv.js"></script>
   <script src="PluginBridge.js"></script>
+
+  <!-- Unity Loader -->
   <script>
-    // init OpenCV when ready
-    cv['onRuntimeInitialized']=()=>{
+    // Inisialisasi OpenCV
+    cv['onRuntimeInitialized'] = () => {
       console.log('OpenCV ready');
       startCameraAndTrack();
     };
   </script>
-  <script src="Build/WebAR.loader.js"></script>
+
+  <!-- Konfigurasi Unity WebGL -->
+  <script>
+    var buildUrl = "Build";
+    var config = {
+      dataUrl: buildUrl + "/Build.data",
+      frameworkUrl: buildUrl + "/Build.framework.js",
+      codeUrl: buildUrl + "/Build.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "MyCompany",
+      productName: "MyWebARProject",
+      productVersion: "1.0",
+    };
+
+    var container = document.querySelector("#unity-canvas");
+    var script = document.createElement("script");
+    script.src = buildUrl + "/Build.loader.js";
+    script.onload = () => {
+      createUnityInstance(container, config, (progress) => {
+        console.log("Loading: " + (progress * 100).toFixed(1) + "%");
+      }).then((unityInstance) => {
+        window.unityInstance = unityInstance;
+      });
+    };
+    document.body.appendChild(script);
+  </script>
 </body>
 </html>
