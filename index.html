@@ -33,7 +33,7 @@
 
     var container = document.querySelector("#unity-canvas");
     var script = document.createElement("script");
-    script.src = buildUrl + "/Build.loader.js"; // 
+    script.src = buildUrl + "/Build.loader.js"; // ✅ INI SESUAI DENGAN NAMAMU
     script.onload = () => {
       createUnityInstance(container, config, (progress) => {
         console.log(`Loading ${progress * 100}%`);
