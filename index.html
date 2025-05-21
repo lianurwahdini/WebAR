@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Unity WebAR</title>
+</head>
+<body>
+  <canvas id="unity-canvas"></canvas>
+  <script src="opencv.js"></script>
+  <script src="PluginBridge.js"></script>
+  <script>
+    // init OpenCV when ready
+    cv['onRuntimeInitialized']=()=>{
+      console.log('OpenCV ready');
+      startCameraAndTrack();
+    };
+  </script>
+  <script src="Build/MyWebARProject.loader.js"></script>
+</body>
+</html>
